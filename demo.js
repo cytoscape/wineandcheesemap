@@ -8,7 +8,7 @@ $(function(){
   var aniDur = 500;
   var easing = 'linear';
 
-  var initPan, initZoom;
+  var cy;
 
   // get exported json from cytoscape desktop via ajax
   var graphP = $.ajax({
@@ -190,15 +190,6 @@ $(function(){
       return Promise.delay( aniDur );
     };
 
-    var fit = function(){
-      return cy.animation({
-        zoom: initZoom,
-        pan: initPan,
-        duration: aniDur,
-        easing: easing
-      }).play().promise();
-    };
-
     var restorePositions = function(){
       cy.batch(function(){
         others.nodes().forEach(function( n ){
@@ -218,7 +209,6 @@ $(function(){
     return Promise.resolve()
       .then( resetHighlight )
       .then( hideOthers )
-      .then( fit )
       .then( restorePositions )
       .then( showOthers )
     ;
@@ -257,7 +247,7 @@ $(function(){
 
     loading.classList.add('loaded');
 
-    var cy = window.cy = cytoscape({
+    cy = window.cy = cytoscape({
       container: document.getElementById('cy'),
       layout: { name: 'preset', padding: layoutPadding },
       style: styleJson,
@@ -267,12 +257,6 @@ $(function(){
       boxSelectionEnabled: false,
       autoungrabify: true
     });
-
-    initZoom = cy.zoom();
-    initPan = {
-      x: cy.pan().x,
-      y: cy.pan().y
-    };
 
     allNodes = cy.nodes();
     allEles = cy.elements();
@@ -393,8 +377,10 @@ $(function(){
       cy.stop();
 
       cy.animation({
-        zoom: initZoom,
-        pan: initPan,
+        fit: {
+          eles: cy.elements(),
+          padding: layoutPadding
+        },
         duration: aniDur,
         easing: easing
       }).play();
