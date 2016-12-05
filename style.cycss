@@ -69,10 +69,7 @@ node[NodeType = "Cider"] {
 
 node.highlighted {
 	min-zoomed-font-size: 0;
-    	font-size: 10;
-    	text-outline-width: 2;
-    	text-outline-opacity: 1;
-    	z-index: 9999;
+  z-index: 9999;
 }
 
 edge.highlighted {
@@ -98,7 +95,7 @@ edge.faded {
 }
 
 .highlighted {
-  font-size: 18px;
+
 }
 
 node:selected {
