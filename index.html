@@ -1,106 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8 />
-<meta name="viewport" content="width=device-width, user-scalable=no" />
+  <head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
 
-<title>Wine and cheese</title>
-  <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  <link href="style.css" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="icon.png">
-</head>
-<body>
-  <div id="cy"></div>
-  <div id="loading">
-    <span class="fa fa-refresh fa-spin"></span>
-  </div>
+    <title>Wine &amp; Cheese Map</title>
 
-  <div id="search-wrapper">
-    <input type="text" class="form-control" id="search" placeholder="&#xf002; Search">
-  </div>
-
-  <div id="info">
-  </div>
-
-  <script src="fastclick.min.js"></script>
-  <script src="jquery.min.js"></script>
-
-  <script src="cytoscape.min.js"></script>
-
-  <script src="jquery.qtip.min.js"></script>
-  <link href="jquery.qtip.min.css" rel="stylesheet" type="text/css" />
-  <script src="cytoscape-qtip.js"></script>
-
-  <script src="bluebird.min.js"></script>
-  <script src="bootstrap.min.js"></script>
-  <script src="typeahead.bundle.js"></script>
-  <script src="handlebars.min.js"></script>
-  <script src="lodash.min.js"></script>
-
-  <script src="demo.js"></script>
-
-  <button id="reset" class="btn btn-default"><i class="fa fa-arrows-h"></i></button>
-
-  <button id="filter" class="btn btn-default"><i class="fa fa-filter"></i></button>
-
-  <button id="about" class="btn btn-default"><i class="fa fa-info"></i></button>
-
-  <div id="about-content">
-    <p>This app was made using <a target="_blank" href="http://js.cytoscape.org">Cytoscape.js <i class="fa fa-external-link"></i></a>.</p>
-
-    <p><a target="_blank" href="https://www.amazon.ca/Cheese-Connoisseurs-Guide-Worlds-Best/dp/1400050340/ref=sr_1_3?s=books&ie=UTF8&qid=1416109370&sr=1-3">Data reference <i class="fa fa-external-link"></i></a></p>
-  </div>
-
-  <div id="filters">
-    <div class="filterset-section-title">Cheese</div>
-
-    <div class="filtersets">
-      <div class="filterset">
-        <div class="filterset-title">Moisture</div>
-        <input id="soft" type="checkbox" checked></input><label for="soft">Soft</label><br />
-        <input id="semi-soft" type="checkbox" checked></input><label for="semi-soft">Semi-soft</label><br />
-        <input id="semi-hard" type="checkbox" checked></input><label for="semi-hard">Semi-hard</label><br />
-        <input id="hard" type="checkbox" checked></input><label for="hard">Hard</label><br />
-        <input id="na" type="checkbox" checked></input><label for="na">Other</label><br />
-      </div>
-      <div class="filterset right">
-        <div class="filterset-title">Country</div>
-        <input id="chs-en" type="checkbox" checked></input><label for="chs-en">England</label><br />
-        <input id="chs-fr" type="checkbox" checked></input><label for="chs-fr">France</label><br />
-        <input id="chs-it" type="checkbox" checked></input><label for="chs-it">Italy</label><br />
-        <input id="chs-usa" type="checkbox" checked></input><label for="chs-us">USA</label><br />
-        <input id="chs-es" type="checkbox" checked></input><label for="chs-es">Spain</label><br />
-        <input id="chs-ch" type="checkbox" checked></input><label for="chs-ch">Switzerland</label><br />
-        <input id="chs-euro" type="checkbox" checked></input><label for="chs-euro">Other Europe</label><br />
-        <input id="chs-nworld" type="checkbox" checked></input><label for="chs-nworld">Other New World</label><br />
-        <input id="chs-na" type="checkbox" checked></input><label for="chs-na">Other</label><br />
-      </div>
+    <link href="dist/bundle.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
+  </head>
+  <body>
+    <div id="loader" class="loader">
+      <div class="loader-icon"></div>
+      <h1>Wine &amp; Cheese Map</h1>
     </div>
 
-    <div class="filterset-section-title">Drink</div>
+    <script src="dist/polyfills.js"></script>
+    <script src="dist/bundle.js"></script>
 
-    <div class="filtersets">
-      <div class="filterset">
-        <!-- <div class="filterset-title">Type</div> -->
-        <input id="white" type="checkbox" checked></input><label for="white">White wine</label><br />
-        <input id="red" type="checkbox" checked></input><label for="red">Red wine</label><br />
-        <input id="cider" type="checkbox" checked></input><label for="cider">Cider</label>
-      </div>
-    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  </div>
+      ga('create', 'UA-155159-12', 'auto');
+      ga('send', 'pageview');
+    </script>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-155159-12', 'auto');
-    ga('send', 'pageview');
-
-  </script>
-
-</body>
+  </body>
 </html>

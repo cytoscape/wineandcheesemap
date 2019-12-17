@@ -1,0 +1,22 @@
+.app-node-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--panelBgColor);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 1);
+  z-index: 10;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  margin: 0.5em;
+  font-size: 0.8em;
+  color: #fff;
+}
+
+.node-info-name {
+  font-size: 1.25em;
+  margin-bottom: 0.125em;
+}
+
+.node-info-more {
+  margin-top: 0.15em;
+}

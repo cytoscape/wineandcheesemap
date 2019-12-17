@@ -1,0 +1,14 @@
+{
+  "ignoreFiles": [
+    "./node_modules/**/*",
+    "./src/styles/vendor/**/*",
+    "./build/*",
+    "**/*.js",
+    "**/*.png",
+    "**/*.svg"
+  ],
+  "extends": "stylelint-config-standard",
+  "rules": {
+
+  }
+}
